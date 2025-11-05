@@ -2,6 +2,9 @@
   <main class="main">
     <div class="container">
       <h1 class="title">Все посты</h1>
+      <div class="addPostButtonContainer">
+        <UIButton class="addPostButton" @click="showModal = true">+ Add post</UIButton>
+      </div>
       <div class="postsWrapper">
         <Post v-for="post in data" :post />
       </div>
@@ -19,7 +22,7 @@
 <script setup lang="ts">
 const { data } = await useFetch("http://localhost:8000/posts");
 
-const showModal = ref(true);
+const showModal = ref(false);
 </script>
 
 <style scoped>
@@ -38,6 +41,11 @@ const showModal = ref(true);
 }
 
 .title {
+  display: flex;
+  justify-content: center;
+}
+
+.addPostButtonContainer {
   display: flex;
   justify-content: center;
 }
