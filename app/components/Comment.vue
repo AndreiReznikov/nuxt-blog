@@ -1,6 +1,6 @@
 <template>
   <div class="comment">
-    <p class="comment-text">{{ comment?.text }}</p>
+    <p class="commentText">{{ comment?.text }}</p>
     <div class="commentInfo">
       <span class="commentAuthor"> {{ comment?.author?.name }} </span>
       <span class="commentDate">
