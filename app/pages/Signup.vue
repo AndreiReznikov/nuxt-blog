@@ -1,23 +1,19 @@
 <template>
   <main class="main">
     <div class="formContainer">
-      <form class="form">
-        <h2>Авторизация</h2>
+      <form method="post" class="form">
+        <h2>Регистрация</h2>
         <div class="inputsWrapper">
+          <input class="input" placeholder="Логин" required />
           <input class="input" type="email" placeholder="Email" required />
-          <input
-            class="input"
-            type="password"
-            placeholder="Пароль"
-            required
-          />
+          <input class="input" type="password" placeholder="Пароль" required />
         </div>
         <div class="buttonWrapper">
-          <button class="button">Войти</button>
+          <button class="button">Регистрация</button>
         </div>
         <span class="subtext">
-          У вас нет Nuxt Blog аккаунта?
-          <NuxtLink class="signupLink" to="/signup"> Создать аккаунт </NuxtLink>
+          Уже есть аккаунт Nuxt Blog?&nbsp;
+          <NuxtLink class="signinLink" to="/signin"> Войти </NuxtLink>
         </span>
       </form>
     </div>
@@ -54,8 +50,9 @@
 .inputsWrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 8px;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .input {
@@ -66,13 +63,9 @@
   border-radius: 6px;
 }
 
-.between {
-  flex: 1;
-}
-
 .button {
-  width: 100px;
   height: 35px;
+  margin: 1rem 0;
   color: white;
   background-color: black;
   border: 1px solid white;
@@ -84,7 +77,7 @@
   font-size: 14px;
 }
 
-.signupLink {
+.signinLink {
   color: var(--color-white);
   text-decoration: underline;
 }
