@@ -10,14 +10,14 @@
           <slot name="body">тело по умолчанию</slot>
         </div>
 
-        <div class="modalFooter">
+        <!-- <div class="modalFooter">
           <slot name="footer">
             нижний колонтитул по умолчанию
             <button class="modalDefaultButton" @click="$emit('close')">
               OK
             </button>
           </slot>
-        </div>
+        </div> -->
       </div>
     </div>
   </Transition>

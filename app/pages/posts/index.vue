@@ -3,7 +3,9 @@
     <div class="container">
       <h1 class="title">Все посты</h1>
       <div class="addPostButtonContainer">
-        <UIButton class="addPostButton" @click="showModal = true">+ Добавить пост</UIButton>
+        <UIButton class="addPostButton" @click="showModal = true"
+          >+ Добавить пост</UIButton
+        >
       </div>
       <div class="postsWrapper">
         <Post v-for="post in data" :post />
@@ -12,6 +14,19 @@
         <UIModal :show="showModal" @close="showModal = false">
           <template #header>
             <h3>Добавить пост</h3>
+          </template>
+          <template #body>
+            <div class="formContainer">
+              <form class="form">
+                <UIInput placeholder="Заголовок..." />
+                <textarea class="textarea" placeholder="Описание..." />
+                <div class="buttonContainer">
+                  <UIButton type="button" @click="showModal = false">
+                    Добавить
+                  </UIButton>
+                </div>
+              </form>
+            </div>
           </template>
         </UIModal>
       </Teleport>
@@ -48,6 +63,46 @@ const showModal = ref(false);
 .addPostButtonContainer {
   display: flex;
   justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  width: 100%;
+  gap: 20px;
+  margin-top: 85px;
+}
+
+.textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 6px;
+  resize: none;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.button {
+  width: 280px;
+  height: 35px;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .postsWrapper {

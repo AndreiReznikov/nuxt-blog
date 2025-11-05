@@ -19,7 +19,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const route = useRoute();
 
 const { data: post } = await useFetch(
