@@ -4,12 +4,12 @@
       <form method="post" class="form">
         <h2>Регистрация</h2>
         <div class="inputsWrapper">
-          <input class="input" placeholder="Логин" required />
-          <input class="input" type="email" placeholder="Email" required />
-          <input class="input" type="password" placeholder="Пароль" required />
+          <UIInput placeholder="Логин" required />
+          <UIInput type="email" placeholder="Email" required />
+          <UIInput type="password" placeholder="Пароль" required />
         </div>
         <div class="buttonWrapper">
-          <button class="button">Регистрация</button>
+          <UIButton>Регистрация</UIButton>
         </div>
         <span class="subtext">
           Уже есть аккаунт Nuxt Blog?&nbsp;
@@ -55,22 +55,8 @@
   margin: 1rem 0;
 }
 
-.input {
-  width: 100%;
-  height: 35px;
-  padding: 0 12px;
-  border: 1px solid white;
-  border-radius: 6px;
-}
-
-.button {
-  height: 35px;
+.buttonWrapper {
   margin: 1rem 0;
-  color: white;
-  background-color: black;
-  border: 1px solid white;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .subtext {

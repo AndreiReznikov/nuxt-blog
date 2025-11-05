@@ -4,16 +4,11 @@
       <form class="form">
         <h2>Авторизация</h2>
         <div class="inputsWrapper">
-          <input class="input" type="email" placeholder="Email" required />
-          <input
-            class="input"
-            type="password"
-            placeholder="Пароль"
-            required
-          />
+          <UIInput type="email" placeholder="Email" required />
+          <UIInput type="password" placeholder="Пароль" required />
         </div>
         <div class="buttonWrapper">
-          <button class="button">Войти</button>
+          <UIButton>Войти</UIButton>
         </div>
         <span class="subtext">
           У вас нет Nuxt Blog аккаунта?
@@ -56,28 +51,6 @@
   flex-direction: column;
   width: 100%;
   gap: 8px;
-}
-
-.input {
-  width: 100%;
-  height: 35px;
-  padding: 0 12px;
-  border: 1px solid white;
-  border-radius: 6px;
-}
-
-.between {
-  flex: 1;
-}
-
-.button {
-  width: 100px;
-  height: 35px;
-  color: white;
-  background-color: black;
-  border: 1px solid white;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .subtext {
