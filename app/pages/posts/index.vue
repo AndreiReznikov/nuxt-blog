@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="title">Все посты</h1>
       <div class="addPostButtonContainer">
-        <UIButton class="addPostButton" @click="showModal = true">+ Add post</UIButton>
+        <UIButton class="addPostButton" @click="showModal = true">+ Добавить пост</UIButton>
       </div>
       <div class="postsWrapper">
         <Post v-for="post in data" :post />
