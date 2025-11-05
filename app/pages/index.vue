@@ -6,9 +6,18 @@
         Здесь вы можете создавать посты, а также читать и комментировать посты
         других авторов.
       </h2>
+      <h4 v-if="!loggedIn" class="subtitle">
+        Чтобы стать автором
+        <NuxtLink class="link" to="/signin">войдите</NuxtLink> или
+        <NuxtLink class="link" to="/signup">зарегистрируйтесь</NuxtLink>
+      </h4>
     </div>
   </main>
 </template>
+
+<script setup>
+const { loggedIn } = useUserSession();
+</script>
 
 <style scoped>
 .main {
@@ -32,6 +41,7 @@
 }
 
 .link {
+  color: var(--color-white);
   text-decoration: underline;
 }
 </style>

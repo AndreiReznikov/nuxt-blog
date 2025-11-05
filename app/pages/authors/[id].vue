@@ -10,14 +10,18 @@
       <div v-else class="noPostsText">У автора нет постов</div>
       <div class="posts">
         <div class="postsWrapper">
-          <Post v-for="post in data.posts" :post />
+          <Post v-for="post in data.posts" :key="post.id" :post />
         </div>
       </div>
     </div>
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
+definePageMeta({
+  middleware: ["authenticated"],
+});
+
 const route = useRoute();
 
 const { data } = await useFetch(

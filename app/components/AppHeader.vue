@@ -21,9 +21,21 @@
       <NuxtLink to="/profile">
         <NuxtImg src="/profile.svg" width="40" height="40" alt="Profile" />
       </NuxtLink>
+      <span v-if="!!user" class="signout" @click="signout">
+        Выйти
+      </span>
     </div>
   </header>
 </template>
+
+<script setup>
+const { user, clear: clearSession } = useUserSession();
+
+async function signout() {
+  await clearSession();
+  await navigateTo("/signin");
+}
+</script>
 
 <style>
 .header {
@@ -55,5 +67,9 @@
   display: flex;
   align-items: center;
   gap: 40px;
+}
+
+.signout {
+  cursor: pointer;
 }
 </style>

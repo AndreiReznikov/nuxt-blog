@@ -1,14 +1,24 @@
 <template>
   <main class="main">
     <div class="formContainer">
-      <form class="form">
+      <form class="form" @submit.prevent="signin">
         <h2>Авторизация</h2>
         <div class="inputsWrapper">
-          <UIInput type="email" placeholder="Email" required />
-          <UIInput type="password" placeholder="Пароль" required />
+          <UIInput
+            v-model="credentials.email"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <UIInput
+            v-model="credentials.password"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
         </div>
         <div class="buttonWrapper">
-          <UIButton>Войти</UIButton>
+          <UIButton type="submit">Войти</UIButton>
         </div>
         <span class="subtext">
           У вас нет Nuxt Blog аккаунта?
@@ -18,6 +28,33 @@
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  middleware: ["loggedin"],
+});
+
+const { fetch: refreshSession } = useUserSession();
+
+const credentials = reactive({
+  email: "",
+  password: "",
+});
+
+async function signin() {
+  try {
+    await $fetch("/api/signin", {
+      method: "POST",
+      body: credentials,
+    });
+
+    await refreshSession();
+    await navigateTo("/");
+  } catch {
+    alert("Неверные логин или пароль");
+  }
+}
+</script>
 
 <style scoped>
 .main {

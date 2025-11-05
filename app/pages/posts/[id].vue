@@ -13,13 +13,17 @@
       </article>
       <div v-show="post?.comments?.length" class="commentsWrapper">
         <h3 class="commentsTitle">Комментарии:</h3>
-        <Comment v-for="comment in post?.comments" :comment />
+        <Comment v-for="comment in post?.comments" :key="comment.id" :comment />
       </div>
     </div>
   </main>
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ["authenticated"],
+});
+
 const route = useRoute();
 
 const { data: post } = await useFetch(

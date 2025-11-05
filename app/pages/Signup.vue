@@ -20,6 +20,12 @@
   </main>
 </template>
 
+<script setup>
+definePageMeta({
+  middleware: ["loggedin"],
+});
+</script>
+
 <style scoped>
 .main {
   display: flex;

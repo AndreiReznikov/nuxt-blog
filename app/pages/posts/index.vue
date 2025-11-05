@@ -8,7 +8,7 @@
         >
       </div>
       <div class="postsWrapper">
-        <Post v-for="post in data" :post />
+        <Post v-for="post in data" :key="post.id" :post />
       </div>
       <Teleport to="body">
         <UIModal :show="showModal" @close="showModal = false">
@@ -21,7 +21,14 @@
                 <UIInput placeholder="Заголовок..." />
                 <textarea class="textarea" placeholder="Описание..." />
                 <div class="buttonContainer">
-                  <UIButton type="button" @click="showModal = false">
+                  <UIButton
+                    class="modalButton"
+                    type="button"
+                    @click="showModal = false"
+                  >
+                    Отмена
+                  </UIButton>
+                  <UIButton class="modalButton" type="button">
                     Добавить
                   </UIButton>
                 </div>
@@ -34,7 +41,11 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
+definePageMeta({
+  middleware: ["authenticated"],
+});
+
 const { data } = await useFetch("http://localhost:8000/posts");
 
 const showModal = ref(false);
@@ -74,10 +85,10 @@ const showModal = ref(false);
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 680px;
+  gap: 1.25rem;
+  max-width: 42.5rem;
   width: 100%;
-  gap: 20px;
-  margin-top: 85px;
+  margin-top: 2rem;
 }
 
 .textarea {
@@ -92,10 +103,11 @@ const showModal = ref(false);
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
   width: 100%;
 }
 
-.button {
+.modalButton {
   width: 280px;
   height: 35px;
   color: white;

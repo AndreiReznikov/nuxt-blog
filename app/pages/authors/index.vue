@@ -6,6 +6,7 @@
         <NuxtLink
           v-for="author in data"
           class="link"
+          :key="author.id"
           :to="`authors/${author?.id}`"
         >
           <article class="article" :key="author?.id">
@@ -18,7 +19,11 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
+definePageMeta({
+  middleware: ["authenticated"],
+});
+
 const { data } = await useFetch("http://localhost:8000/users");
 </script>
 
