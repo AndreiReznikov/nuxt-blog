@@ -5,12 +5,21 @@
       <div class="postsWrapper">
         <Post v-for="post in data" :post />
       </div>
+      <Teleport to="body">
+        <UIModal :show="showModal" @close="showModal = false">
+          <template #header>
+            <h3>Добавить пост</h3>
+          </template>
+        </UIModal>
+      </Teleport>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 const { data } = await useFetch("http://localhost:8000/posts");
+
+const showModal = ref(true);
 </script>
 
 <style scoped>
