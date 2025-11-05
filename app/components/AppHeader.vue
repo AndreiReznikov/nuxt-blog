@@ -17,6 +17,11 @@
         </ul>
       </nav>
     </div>
+    <div class="rightSideContainer">
+      <NuxtLink to="/profile">
+        <NuxtImg src="/profile.svg" width="40" height="40" alt="Profile" />
+      </NuxtLink>
+    </div>
   </header>
 </template>
 
@@ -44,5 +49,11 @@
 .navbarLink {
   color: var(--color-white);
   text-decoration: none;
+}
+
+.rightSideContainer {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 </style>
