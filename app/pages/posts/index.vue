@@ -17,9 +17,16 @@
           </template>
           <template #body>
             <div class="formContainer">
-              <form class="form">
-                <UIInput placeholder="Заголовок..." />
-                <textarea class="textarea" placeholder="Описание..." />
+              <form class="form" @submit.prevent="addPost">
+                <UIInput
+                  v-model="credentials.title"
+                  placeholder="Заголовок..."
+                />
+                <textarea
+                  v-model="credentials.description"
+                  class="textarea"
+                  placeholder="Описание..."
+                />
                 <div class="buttonContainer">
                   <UIButton
                     class="modalButton"
@@ -28,9 +35,7 @@
                   >
                     Отмена
                   </UIButton>
-                  <UIButton class="modalButton" type="button">
-                    Добавить
-                  </UIButton>
+                  <UIButton class="modalButton"> Добавить </UIButton>
                 </div>
               </form>
             </div>
@@ -46,9 +51,33 @@ definePageMeta({
   middleware: ["authenticated"],
 });
 
-const { data: posts } = await useFetch("/api/posts");
+const { user } = useUserSession();
+const { data: posts, refresh: refreshPosts } = await useFetch("/api/posts");
 
 const showModal = ref(false);
+
+const credentials = reactive({
+  title: "",
+  description: "",
+});
+
+async function addPost() {
+  try {
+    await $fetch("/api/posts/add", {
+      method: "POST",
+      body: { ...credentials, authorId: user?.value.id },
+    });
+
+    credentials.title = "";
+    credentials.description = "";
+
+    showModal.value = false;
+
+    await refreshPosts();
+  } catch {
+    alert("Ошибка");
+  }
+}
 </script>
 
 <style scoped>

@@ -17,8 +17,8 @@ export default defineEventHandler(async (event) => {
   });
 
   const { user, backendTokens } = data;
-  console.log("tokens:", backendTokens);
-  if (user) {
+
+  if (user && backendTokens) {
     await setUserSession(event, {
       user,
       secure: {
