@@ -1,12 +1,22 @@
 <template>
   <main class="main">
     <div class="formContainer">
-      <form method="post" class="form">
+      <form method="post" class="form" @submit.prevent="signup">
         <h2>Регистрация</h2>
         <div class="inputsWrapper">
-          <UIInput placeholder="Логин" required />
-          <UIInput type="email" placeholder="Email" required />
-          <UIInput type="password" placeholder="Пароль" required />
+          <UIInput v-model="credentials.name" placeholder="Логин" required />
+          <UIInput
+            v-model="credentials.email"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <UIInput
+            v-model="credentials.password"
+            type="password"
+            placeholder="Пароль"
+            required
+          />
         </div>
         <div class="buttonWrapper">
           <UIButton>Регистрация</UIButton>
@@ -24,6 +34,25 @@
 definePageMeta({
   middleware: ["loggedin"],
 });
+
+const credentials = reactive({
+  name: "",
+  email: "",
+  password: "",
+});
+
+async function signup() {
+  try {
+    await $fetch("/api/signup", {
+      method: "POST",
+      body: credentials,
+    });
+
+    await navigateTo("/signin");
+  } catch {
+    alert("Неверные данные");
+  }
+}
 </script>
 
 <style scoped>
