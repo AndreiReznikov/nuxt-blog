@@ -4,7 +4,7 @@
       <h1>Авторы</h1>
       <div class="wrapper">
         <NuxtLink
-          v-for="author in data"
+          v-for="author in authors"
           class="link"
           :key="author.id"
           :to="`authors/${author?.id}`"
@@ -24,7 +24,7 @@ definePageMeta({
   middleware: ["authenticated"],
 });
 
-const { data } = await useFetch("http://localhost:8000/users");
+const { data: authors } = await useFetch("/api/authors");
 </script>
 
 <style scoped>

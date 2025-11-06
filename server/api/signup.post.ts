@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   );
 
   try {
-    await $fetch("http://localhost:8000/auth/register", {
+    await $fetch("https://nest-blog-w4lp.onrender.com/auth/register", {
       method: "POST",
       body: JSON.stringify({
         name,

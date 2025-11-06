@@ -3,14 +3,14 @@
     <div class="container">
       <NuxtLink class="link" to="/authors">&#8592; Ко всем авторам</NuxtLink>
       <div class="info">
-        <h1>{{ data.name }}</h1>
-        <div>{{ data.email }}</div>
+        <h1>{{ author?.name }}</h1>
+        <div>{{ author?.email }}</div>
       </div>
-      <h2 v-if="data.posts?.length > 0" className="title">Посты автора</h2>
+      <h2 v-if="author?.posts?.length > 0" className="title">Посты автора</h2>
       <div v-else class="noPostsText">У автора нет постов</div>
       <div class="posts">
         <div class="postsWrapper">
-          <Post v-for="post in data.posts" :key="post.id" :post />
+          <Post v-for="post in author?.posts" :key="post.id" :post />
         </div>
       </div>
     </div>
@@ -24,9 +24,7 @@ definePageMeta({
 
 const route = useRoute();
 
-const { data } = await useFetch(
-  `http://localhost:8000/users/${route.params.id}`
-);
+const { data: author } = await useFetch(`/api/authors/${route.params.id}`);
 </script>
 
 <style scoped>

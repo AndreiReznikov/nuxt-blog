@@ -26,7 +26,7 @@ const { user } = useUserSession();
 
 const { data: profile } = await useAsyncData(
   "user-data",
-  () => $fetch(`http://localhost:8000/users/${user.value.id}`),
+  () => $fetch(`/api/authors/${user.value.id}`),
   {
     watch: [user],
     immediate: !!user.value?.id,

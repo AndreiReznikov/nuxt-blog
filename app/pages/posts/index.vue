@@ -8,7 +8,7 @@
         >
       </div>
       <div class="postsWrapper">
-        <Post v-for="post in data" :key="post.id" :post />
+        <Post v-for="post in posts" :key="post.id" :post />
       </div>
       <Teleport to="body">
         <UIModal :show="showModal" @close="showModal = false">
@@ -46,7 +46,7 @@ definePageMeta({
   middleware: ["authenticated"],
 });
 
-const { data } = await useFetch("http://localhost:8000/posts");
+const { data: posts } = await useFetch("/api/posts");
 
 const showModal = ref(false);
 </script>

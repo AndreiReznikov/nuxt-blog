@@ -26,9 +26,7 @@ definePageMeta({
 
 const route = useRoute();
 
-const { data: post } = await useFetch(
-  `http://localhost:8000/posts/${route.params.id}`
-);
+const { data: post } = await useFetch(`/api/posts/${route.params.id}`);
 </script>
 
 <style scoped>

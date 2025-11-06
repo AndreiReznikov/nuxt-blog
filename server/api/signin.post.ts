@@ -8,7 +8,7 @@ const bodySchema = z.object({
 export default defineEventHandler(async (event) => {
   const { email, password } = await readValidatedBody(event, bodySchema.parse);
 
-  const data = await $fetch("http://localhost:8000/auth/login", {
+  const data = await $fetch("https://nest-blog-w4lp.onrender.com/auth/login", {
     method: "POST",
     body: JSON.stringify({
       username: email,
@@ -16,11 +16,15 @@ export default defineEventHandler(async (event) => {
     }),
   });
 
-  const { user } = data;
-
+  const { user, backendTokens } = data;
+  console.log("tokens:", backendTokens);
   if (user) {
     await setUserSession(event, {
       user,
+      secure: {
+        accessToken: backendTokens.accessToken,
+        refreshToken: backendTokens.refreshToken,
+      },
     });
 
     return {};
